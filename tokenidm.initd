@@ -1,0 +1,27 @@
+#!/bin/sh
+# Starts, stops & restarts tokenidm 
+#
+
+
+case "$1" in
+start)
+	cd /opt/tokenidm
+	./tokenidm.sh start	
+;;
+
+stop)
+	cd /opt/tokenidm
+	./tokenidm.sh stop
+;;
+
+restart)
+	cd /opt/tokenidm
+	./tokenidm.sh stop
+	./tokenidm.sh start
+;;
+
+
+*)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
