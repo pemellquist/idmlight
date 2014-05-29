@@ -1,9 +1,11 @@
 tokenidm server 
-----------------
+===============
 TokenIDM is a simple stand-alone identity manager server and token generator/validator which can be used with a variety of REST services that require token based API authentication. TokenIDM is similar to Openstack's Keystone IDM service but it is meant to be simplier and it is implemented in Java. 
 
 This README defines the required tools and steps to build and run tokenidm. There are other combinations of OSs, libraries and tools possible.
 
+Getting and building tokenidm
+------------------
 1) Get Ubuntu OS, 12.04 64 bit bit OS is recommended
 (other OSs are possible but these instructions assume this Ubuntu & Debian packages) 
 
