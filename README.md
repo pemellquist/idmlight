@@ -45,3 +45,15 @@ Destination for logging files
 /etc/init.d/tokenidm,br/>
 Service start, stop and restart init.d script
 
+Testing tokenidm
+------------------------------
+A set of system level tests are available to test an installed tokenidm serve. These tests are meant to drive all the tokenidm REST APIs and check results. To run these tests, a clean database is required. <br/>
+
+After having installed tokenidm, the database tables are required to be dropped. <br/>
+$<installed source dir>/tests/cleardb.sh
+
+Tests can be run and results reported. <br/>
+$<installed source dir>/tests/test.sh
+
+D
+$<source install dir>/tests/./cleardb.sh
