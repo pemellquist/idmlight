@@ -55,5 +55,3 @@ $<installed source dir>/tests/cleardb.sh
 Tests can be run and results reported. <br/>
 $<installed source dir>/tests/test.sh
 
-D
-$<source install dir>/tests/./cleardb.sh
