@@ -9,34 +9,26 @@ Getting and building tokenidm
 1) Get Ubuntu OS, 12.04 64 bit bit OS is recommended<br/>
 (other OSs are possible but these instructions assume this Ubuntu & Debian packages) 
 
-2) Install tokenidm api sources, clone from git repo
-
+2) Install tokenidm api sources, clone from git repo<br/>
 $ git clone https://github.com/pemellquist/tokenidm.git <your local tokenidm location> 
 
-3) Install maven, needed to building
-
+3) Install maven, needed to building<br/>
 $ sudo apt-get install maven2 
 
-4) Install java 7
+4) Install java 7 <br/>
+$ sudo add-apt-repository ppa:webupd8team/java -y <br/>
+$ sudo apt-get update <br/>
+$ sudo apt-get install oracle-java7-installer </br>
 
-$ sudo add-apt-repository ppa:webupd8team/java -y
-$ sudo apt-get update
-$ sudo apt-get install oracle-java7-installer
-
-5) Install Debian Package Make tool 
-
+5) Install Debian Package Make tool <br/>
 $ sudo apt-get install dh-make
 
-6) Build  
-
-$ ./build.sh
-
+6) Build <br/> 
+$ ./build.sh<br/>
 This will build Java jar and from it a debian package. 
 
-7) Install deb package and run it
-
-$ ./stage.sh
-
+7) Install deb package and run it <br/>
+$ ./stage.sh<br/>
 The stage script will install the created debian package and start the tokenidm server.
 The following directories and files will have been created.
 
