@@ -6,8 +6,7 @@ This README defines the required tools and steps to build and run tokenidm. Ther
 
 Getting and building tokenidm
 ------------------
-1) Get Ubuntu OS, 12.04 64 bit bit OS is recommended
-
+1) Get Ubuntu OS, 12.04 64 bit bit OS is recommended<br/>
 (other OSs are possible but these instructions assume this Ubuntu & Debian packages) 
 
 2) Install tokenidm api sources, clone from git repo
