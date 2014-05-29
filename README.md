@@ -29,14 +29,19 @@ This will build Java jar and from it a debian package.
 
 7) Install deb package and run it <br/>
 $ ./stage.sh<br/>
-The stage script will install the created debian package and start the tokenidm server.
-The following directories and files will have been created.
+The stage script will install the created debian package and start the tokenidm server. You may also start and stop the tokenidm server as a service.<br/>
+$ service tokenidm start | stop
 
-/opt/tokenidm Installed binaries, certificate files, logging properties, config, run script and sql schema
+tokenidm runtime directories and files
+--------------------------------
+Once the debian package has been installed the following directories and files are created.<br/>
 
-/var/log/tokenidm destination for logging files
+/opt/tokenidm<br/>
+Installed binaries, certificate files, logging properties, config, run script and sql schema
 
-/etc/init.d/tokenidm service start, stop and restart init.d script
+/var/log/tokenidm<br/>
+Destination for logging files
 
-8) Starting and stopping tokenidm
-service tokenidm start | stop
+/etc/init.d/tokenidm,br/>
+Service start, stop and restart init.d script
+
