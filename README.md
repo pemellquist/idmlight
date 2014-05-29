@@ -1,6 +1,6 @@
-tokenidm server environment and build information ( what's needed for development )
-------------------------------------------------------------------------------------
-There are other combinations of OSs, libraries and tools possible but here is a set of steps which will work.
+tokenidm server environment and build information 
+--------------------------------------------------
+This README defines the required tools and steps to build and run tokenidm. There are other combinations of OSs, libraries and tools possible in addition to what is specified here.
 
 1) Get Ubuntu OS, 12.04 64 bit bit OS is recommended
 (other OSs are possible but these instructions assume this Ubuntu & Debian packages) 
