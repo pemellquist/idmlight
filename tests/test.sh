@@ -156,6 +156,51 @@ PASSCODE=200
 putit
 
 
+# ROLE TESTS
+
+NAME="get all roles"
+URL="https://$TARGET/V1/roles"
+PASSCODE=200
+getit
+
+NAME="create a new role"
+URL="https://$TARGET/V1/roles"
+POSTFILE=role.json
+PASSCODE=201
+postit
+
+NAME="get all roles"
+URL="https://$TARGET/V1/roles"
+PASSCODE=200
+getit
+
+NAME="get a role"
+URL="https://$TARGET/V1/roles/1"
+PASSCODE=200
+getit
+
+NAME="delete role"
+URL="https://$TARGET/V1/roles/1"
+PASSCODE=204
+deleteit
+
+NAME="create a new role"
+URL="https://$TARGET/V1/roles"
+POSTFILE=role.json
+PASSCODE=201
+postit
+
+NAME="update a role"
+URL="https://$TARGET/V1/roles/2"
+PUTFILE=role-put.json
+PASSCODE=200
+putit
+
+NAME="get all roles"
+URL="https://$TARGET/V1/roles"
+PASSCODE=200
+getit
+
 #
 # RESULTS
 #
