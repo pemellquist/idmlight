@@ -15,3 +15,11 @@ CREATE TABLE users (
   description VARCHAR(128)      NOT NULL,
   enabled     INTEGER           NOT NULL
 );
+
+DROP TABLE IF EXISTS roles;
+CREATE TABLE roles (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  name        VARCHAR(128)      NOT NULL,
+  description VARCHAR(128)      NOT NULL
+);
+
