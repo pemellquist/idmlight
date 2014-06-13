@@ -1,4 +1,4 @@
 {
-    "name":"role 123",
-    "description":"role 123 descr"
+    "name":"user",
+    "description":"A user role with limited access"
 }
