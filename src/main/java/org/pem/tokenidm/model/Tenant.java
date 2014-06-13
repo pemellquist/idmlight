@@ -4,17 +4,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "tenant")
 public class Tenant {
-   private Integer id;
+   private Integer tenantid;
    private String name;
    private String description;
    private Boolean enabled;
 
-   public Integer getId() {
-      return id;
+   public Integer getTenantid() {
+      return tenantid;
    }
 
-   public void setId(Integer id) {
-      this.id = id;
+   public void setTenantid(Integer id) {
+      this.tenantid = id;
    }
 
    public String getName() {
