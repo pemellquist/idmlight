@@ -22,7 +22,7 @@ import org.pem.tokenidm.model.TokenIDMError;
 import org.pem.tokenidm.persistence.UserStore;
 import org.pem.tokenidm.persistence.StoreException;
 	
-@Path("/V1/users")
+@Path("/v1/users")
 public class UserHandler {
 	
    private static Logger logger = Logger.getLogger(UserHandler.class);	
@@ -125,7 +125,7 @@ public class UserHandler {
       }
 
       try {
-         user.setId((int)longId);
+         user.setUserid((int)longId);
          user = userStore.putUser(user);
          if (user==null) {
             TokenIDMError tokenidmerror = new TokenIDMError();
@@ -159,7 +159,7 @@ public class UserHandler {
 
       try {
          User user = new User();
-         user.setId((int)longId);
+         user.setUserid((int)longId);
          user = userStore.deleteUser(user);
          if (user==null) {
             TokenIDMError tokenidmerror = new TokenIDMError();
