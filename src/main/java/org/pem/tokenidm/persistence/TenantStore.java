@@ -20,7 +20,7 @@ public class TenantStore {
    protected Connection  dbConnection = null;
    private static Calendar calendar = Calendar.getInstance();
    
-   protected final static String SQL_ID             = "id";
+   protected final static String SQL_ID             = "tenantid";
    protected final static String SQL_NAME           = "name";
    protected final static String SQL_DESCR          = "description";
    protected final static String SQL_ENABLED        = "enabled";
@@ -76,7 +76,7 @@ public class TenantStore {
    protected Tenant rsToTenant(ResultSet rs) throws SQLException {
       Tenant tenant = new Tenant();
       try {
-         tenant.setId(rs.getInt(SQL_ID));
+         tenant.setTenantid(rs.getInt(SQL_ID));
          tenant.setName(rs.getString(SQL_NAME));
          tenant.setDescription(rs.getString(SQL_DESCR));
          tenant.setEnabled(rs.getInt(SQL_ENABLED)==1?true:false);
@@ -116,7 +116,7 @@ public class TenantStore {
    public Tenant getTenant(long id) throws StoreException {
       Connection conn = dbConnect();
       Statement stmt=null;
-      String query = "SELECT * FROM tenants WHERE id=" + id;
+      String query = "SELECT * FROM tenants WHERE tenantid=" + id;
       try {
          stmt=conn.createStatement();
          ResultSet rs=stmt.executeQuery(query);
@@ -157,7 +157,7 @@ public class TenantStore {
              key = generatedKeys.getInt(1);
           else 
              throw new StoreException("Creating tenant failed, no generated key obtained.");
-          tenant.setId(key);
+          tenant.setTenantid(key);
           dbClose();
           return tenant;
        }
@@ -169,7 +169,7 @@ public class TenantStore {
 
    public Tenant putTenant(Tenant tenant) throws StoreException {
       
-      Tenant savedTenant = this.getTenant(tenant.getId());
+      Tenant savedTenant = this.getTenant(tenant.getTenantid());
       if (savedTenant==null)
          return null;
     
@@ -182,12 +182,12 @@ public class TenantStore {
 
       Connection conn = dbConnect();
       try {
-         String query = "UPDATE tenants SET name = ?, description = ?, enabled = ? WHERE id = ?";
+         String query = "UPDATE tenants SET name = ?, description = ?, enabled = ? WHERE tenantid = ?";
          PreparedStatement statement = conn.prepareStatement(query);
          statement.setString(1, savedTenant.getName());
          statement.setString(2, savedTenant.getDescription());
          statement.setInt(3, savedTenant.getEnabled()?1:0);
-         statement.setInt(4,savedTenant.getId());
+         statement.setInt(4,savedTenant.getTenantid());
          statement.executeUpdate();
          statement.close();
          dbClose();
@@ -201,13 +201,13 @@ public class TenantStore {
    }
 
    public Tenant deleteTenant(Tenant tenant) throws StoreException {
-      Tenant savedTenant = this.getTenant(tenant.getId());
+      Tenant savedTenant = this.getTenant(tenant.getTenantid());
       if (savedTenant==null)
          return null;
 
       Connection conn = dbConnect();
       Statement stmt=null;
-      String query = "DELETE FROM tenants WHERE id=" + tenant.getId();
+      String query = "DELETE FROM tenants WHERE tenantid=" + tenant.getTenantid();
       try {
          stmt=conn.createStatement();
          int deleteCount = stmt.executeUpdate(query);
