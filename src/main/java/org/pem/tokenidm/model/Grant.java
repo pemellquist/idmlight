@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Grant {
    private Integer grantid;
    private String description;
-   private Integer tenantid;
+   private Integer domainid;
    private Integer userid;
    private Integer roleid;
 
@@ -26,12 +26,12 @@ public class Grant {
       this.description = description;
    }
 
-   public Integer getTenantid() {
-      return tenantid;
+   public Integer getDomainid() {
+      return domainid;
    }
 
-   public void setTenantid(Integer id) {
-      this.tenantid = id;
+   public void setDomainid(Integer id) {
+      this.domainid = id;
    }
  
    public Integer getUserid() {
