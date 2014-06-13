@@ -20,7 +20,7 @@ public class UserStore {
    protected Connection  dbConnection = null;
    private static Calendar calendar = Calendar.getInstance();
    
-   protected final static String SQL_ID             = "id";
+   protected final static String SQL_ID             = "userid";
    protected final static String SQL_NAME           = "name";
    protected final static String SQL_EMAIL          = "email";
    protected final static String SQL_PASSWORD       = "password";
@@ -78,7 +78,7 @@ public class UserStore {
    protected User rsToUser(ResultSet rs) throws SQLException {
       User user = new User();
       try {
-         user.setId(rs.getInt(SQL_ID));
+         user.setUserid(rs.getInt(SQL_ID));
          user.setName(rs.getString(SQL_NAME));
          user.setEmail(rs.getString(SQL_EMAIL));
          user.setPassword(rs.getString(SQL_PASSWORD));
@@ -120,7 +120,7 @@ public class UserStore {
    public User getUser(long id) throws StoreException {
       Connection conn = dbConnect();
       Statement stmt=null;
-      String query = "SELECT * FROM users WHERE id=" + id;
+      String query = "SELECT * FROM users WHERE userid=" + id;
       try {
          stmt=conn.createStatement();
          ResultSet rs=stmt.executeQuery(query);
@@ -163,7 +163,7 @@ public class UserStore {
              key = generatedKeys.getInt(1);
           else 
              throw new StoreException("Creating user failed, no generated key obtained.");
-          user.setId(key);
+          user.setUserid(key);
           dbClose();
           return user;
        }
@@ -175,7 +175,7 @@ public class UserStore {
 
    public User putUser(User user) throws StoreException {
       
-      User savedUser = this.getUser(user.getId());
+      User savedUser = this.getUser(user.getUserid());
       if (savedUser==null)
          return null;
     
@@ -192,14 +192,14 @@ public class UserStore {
 
       Connection conn = dbConnect();
       try {
-         String query = "UPDATE users SET name = ?, email = ?, password = ?, description = ?, enabled = ? WHERE id = ?";
+         String query = "UPDATE users SET name = ?, email = ?, password = ?, description = ?, enabled = ? WHERE userid = ?";
          PreparedStatement statement = conn.prepareStatement(query);
          statement.setString(1, savedUser.getName());
          statement.setString(2, savedUser.getEmail());
          statement.setString(3, savedUser.getPassword());
          statement.setString(4, savedUser.getDescription());
          statement.setInt(5, savedUser.getEnabled()?1:0);
-         statement.setInt(6,savedUser.getId());
+         statement.setInt(6,savedUser.getUserid());
          statement.executeUpdate();
          statement.close();
          dbClose();
@@ -213,13 +213,13 @@ public class UserStore {
    }
 
    public User deleteUser(User user) throws StoreException {
-      User savedUser = this.getUser(user.getId());
+      User savedUser = this.getUser(user.getUserid());
       if (savedUser==null)
          return null;
 
       Connection conn = dbConnect();
       Statement stmt=null;
-      String query = "DELETE FROM users WHERE id=" + user.getId();
+      String query = "DELETE FROM users WHERE userid=" + user.getUserid();
       try {
          stmt=conn.createStatement();
          int deleteCount = stmt.executeUpdate(query);
