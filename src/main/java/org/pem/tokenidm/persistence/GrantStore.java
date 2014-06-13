@@ -22,7 +22,7 @@ public class GrantStore {
    
    protected final static String SQL_ID             = "grantid";
    protected final static String SQL_DESCR          = "description";
-   protected final static String SQL_TENANTID       = "tenantid";
+   protected final static String SQL_TENANTID       = "domainid";
    protected final static String SQL_USERID         = "userid";
    protected final static String SQL_ROLEID         = "roleid";
 
@@ -79,7 +79,7 @@ public class GrantStore {
       try {
          grant.setGrantid(rs.getInt(SQL_ID));
          grant.setDescription(rs.getString(SQL_DESCR));
-         grant.setTenantid(rs.getInt(SQL_TENANTID));
+         grant.setDomainid(rs.getInt(SQL_TENANTID));
          grant.setUserid(rs.getInt(SQL_USERID));
          grant.setRoleid(rs.getInt(SQL_ROLEID));
       }
@@ -90,12 +90,12 @@ public class GrantStore {
       return grant;
    }
    
-   public Grants getGrants(long tid, long uid) throws StoreException {
+   public Grants getGrants(long did, long uid) throws StoreException {
       Grants grants = new Grants();
       List<Grant> grantList = new ArrayList<Grant>();
       Connection conn = dbConnect();
       Statement stmt=null;
-      String query = "SELECT * FROM grants WHERE tenantid=" + tid + " AND userid="+uid;
+      String query = "SELECT * FROM grants WHERE domainid=" + did + " AND userid="+uid;
       try {
          stmt=conn.createStatement();
          ResultSet rs=stmt.executeQuery(query);
@@ -142,10 +142,10 @@ public class GrantStore {
       }
    }
 
-   public Grant getGrant(long tid,long uid,long rid) throws StoreException {
+   public Grant getGrant(long did,long uid,long rid) throws StoreException {
       Connection conn = dbConnect();
       Statement stmt=null;
-      String query = "SELECT * FROM grants WHERE tenantid=" + tid + " AND userid=" + uid + " AND roleid="+rid;
+      String query = "SELECT * FROM grants WHERE domainid=" + did + " AND userid=" + uid + " AND roleid="+rid;
       try {
          stmt=conn.createStatement();
          ResultSet rs=stmt.executeQuery(query);
@@ -174,10 +174,10 @@ public class GrantStore {
        int key=0;
        Connection conn = dbConnect();
        try {
-          String query = "insert into grants  (description,tenantid,userid,roleid) values(?,?,?,?)";
+          String query = "insert into grants  (description,domainid,userid,roleid) values(?,?,?,?)";
           PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
           statement.setString(1,grant.getDescription());
-          statement.setInt(2,grant.getTenantid());
+          statement.setInt(2,grant.getDomainid());
           statement.setInt(3,grant.getUserid());
           statement.setInt(4,grant.getRoleid());
           int affectedRows = statement.executeUpdate();
