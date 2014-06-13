@@ -4,19 +4,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "user")
 public class User {
-   private Integer id;
+   private Integer userid;
    private String name;
    private String description;
    private Boolean enabled;
    private String email;
    private String password;
 
-   public Integer getId() {
-      return id;
+   public Integer getUserid() {
+      return userid;
    }
 
-   public void setId(Integer id) {
-      this.id = id;
+   public void setUserid(Integer id) {
+      this.userid = id;
    }
 
    public String getName() {
