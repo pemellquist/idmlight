@@ -22,7 +22,7 @@ import org.pem.tokenidm.model.TokenIDMError;
 import org.pem.tokenidm.persistence.RoleStore;
 import org.pem.tokenidm.persistence.StoreException;
 	
-@Path("/V1/roles")
+@Path("/v1/roles")
 public class RoleHandler {
 	
    private static Logger logger = Logger.getLogger(RoleHandler.class);	
@@ -118,7 +118,7 @@ public class RoleHandler {
       }
 
       try {
-         role.setId((int)longId);
+         role.setRoleid((int)longId);
          role = roleStore.putRole(role);
          if (role==null) {
             TokenIDMError tokenidmerror = new TokenIDMError();
@@ -152,7 +152,7 @@ public class RoleHandler {
 
       try {
          Role role = new Role();
-         role.setId((int)longId);
+         role.setRoleid((int)longId);
          role = roleStore.deleteRole(role);
          if (role==null) {
             TokenIDMError tokenidmerror = new TokenIDMError();
