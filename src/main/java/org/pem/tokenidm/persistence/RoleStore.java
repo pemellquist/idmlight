@@ -20,7 +20,7 @@ public class RoleStore {
    protected Connection  dbConnection = null;
    private static Calendar calendar = Calendar.getInstance();
    
-   protected final static String SQL_ID             = "id";
+   protected final static String SQL_ID             = "roleid";
    protected final static String SQL_NAME           = "name";
    protected final static String SQL_DESCR          = "description";
 	
@@ -75,7 +75,7 @@ public class RoleStore {
    protected  Role rsToRole(ResultSet rs) throws SQLException {
       Role role = new Role();
       try {
-         role.setId(rs.getInt(SQL_ID));
+         role.setRoleid(rs.getInt(SQL_ID));
          role.setName(rs.getString(SQL_NAME));
          role.setDescription(rs.getString(SQL_DESCR));
       }
@@ -114,7 +114,7 @@ public class RoleStore {
    public Role getRole(long id) throws StoreException {
       Connection conn = dbConnect();
       Statement stmt=null;
-      String query = "SELECT * FROM roles WHERE id=" + id;
+      String query = "SELECT * FROM roles WHERE roleid=" + id;
       try {
          stmt=conn.createStatement();
          ResultSet rs=stmt.executeQuery(query);
@@ -154,7 +154,7 @@ public class RoleStore {
              key = generatedKeys.getInt(1);
           else 
              throw new StoreException("Creating role failed, no generated key obtained.");
-          role.setId(key);
+          role.setRoleid(key);
           dbClose();
           return role;
        }
@@ -166,7 +166,7 @@ public class RoleStore {
 
    public Role putRole(Role role) throws StoreException {
       
-      Role savedRole = this.getRole(role.getId());
+      Role savedRole = this.getRole(role.getRoleid());
       if (savedRole==null)
          return null;
     
@@ -177,11 +177,11 @@ public class RoleStore {
 
       Connection conn = dbConnect();
       try {
-         String query = "UPDATE roles SET name = ?, description = ? WHERE id = ?";
+         String query = "UPDATE roles SET name = ?, description = ? WHERE roleid = ?";
          PreparedStatement statement = conn.prepareStatement(query);
          statement.setString(1, savedRole.getName());
          statement.setString(2, savedRole.getDescription());
-         statement.setInt(3,savedRole.getId());
+         statement.setInt(3,savedRole.getRoleid());
          statement.executeUpdate();
          statement.close();
          dbClose();
@@ -195,13 +195,13 @@ public class RoleStore {
    }
 
    public Role deleteRole(Role role) throws StoreException {
-      Role savedRole = this.getRole(role.getId());
+      Role savedRole = this.getRole(role.getRoleid());
       if (savedRole==null)
          return null;
 
       Connection conn = dbConnect();
       Statement stmt=null;
-      String query = "DELETE FROM roles WHERE id=" + role.getId();
+      String query = "DELETE FROM roles WHERE roleid=" + role.getRoleid();
       try {
          stmt=conn.createStatement();
          int deleteCount = stmt.executeUpdate(query);
