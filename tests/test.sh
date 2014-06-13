@@ -65,58 +65,57 @@ echo
 
 
 #
-# TENANT TESTS
+# DOMAIN TESTS
 # 
 
-NAME="get all tenants"
-URL="https://$TARGET/v1/tenants"
+NAME="get all domains"
+URL="https://$TARGET/v1/domains"
 PASSCODE=200
 getit
 
-NAME="create a new tenant"
-URL="https://$TARGET/v1/tenants"
-POSTFILE=tenant.json
+NAME="create a new domain"
+URL="https://$TARGET/v1/domains"
+POSTFILE=domain.json
 PASSCODE=201
 postit
 
-NAME="get tenant 1"
-URL="https://$TARGET/v1/tenants/1"
+NAME="get domain 1"
+URL="https://$TARGET/v1/domains/1"
 PASSCODE=200
 getit
 
-NAME="delete tenant 1"
-URL="https://$TARGET/v1/tenants/1"
+NAME="delete domain 1"
+URL="https://$TARGET/v1/domains/1"
 PASSCODE=204
 deleteit
 
-NAME="create a new tenant"
-URL="https://$TARGET/v1/tenants"
-POSTFILE=tenant.json
+NAME="create a new domain"
+URL="https://$TARGET/v1/domains"
+POSTFILE=domain.json
 PASSCODE=201
 postit
 
-NAME="get all tenants"
-URL="https://$TARGET/v1/tenants"
+NAME="get all domains"
+URL="https://$TARGET/v1/domains"
 PASSCODE=200
 getit
 
-NAME="update tenant 2"
-URL="https://$TARGET/v1/tenants/2"
-PUTFILE=tenant.json
+NAME="update domain 2"
+URL="https://$TARGET/v1/domains/2"
+PUTFILE=domain.json
 PASSCODE=200
 putit
 
-NAME="create a new tenant"
-URL="https://$TARGET/v1/tenants"
-POSTFILE=tenant.json
+NAME="create a new domain"
+URL="https://$TARGET/v1/domains"
+POSTFILE=domain.json
 PASSCODE=201
 postit
 
-NAME="get all tenants"
-URL="https://$TARGET/v1/tenants"
+NAME="get all domains"
+URL="https://$TARGET/v1/domains"
 PASSCODE=200
 getit
-
 
 #
 # USER TESTS
@@ -222,43 +221,42 @@ POSTFILE=role.json
 PASSCODE=201
 postit
 
-
 NAME="get all roles"
 URL="https://$TARGET/v1/roles"
 PASSCODE=200
 getit
 
-# TUR tests
+# Grant tests
 
 NAME="grant a role"
-URL="https://$TARGET/v1/tenants/2/users/2/roles"
+URL="https://$TARGET/v1/domains/2/users/2/roles"
 POSTFILE=grant.json
 PASSCODE=201
 postit
 
-URL="https://$TARGET/v1/tenants/2/users/2/roles"
+NAME="try to create a double grant"
+URL="https://$TARGET/v1/domains/2/users/2/roles"
 POSTFILE=grant.json
 PASSCODE=403
 postit
 
-
-NAME="get all roles for tenant and user"
-URL="https://$TARGET/v1/tenants/2/users/2/roles"
+NAME="get all roles for domain and user"
+URL="https://$TARGET/v1/domains/2/users/2/roles"
 PASSCODE=200
 getit
 
 NAME="delete a grant"
-URL="https://$TARGET/v1/tenants/2/users/2/roles/2"
+URL="https://$TARGET/v1/domains/2/users/2/roles/2"
 PASSCODE=204
 deleteit
 
 NAME="delete a grant"
-URL="https://$TARGET/v1/tenants/2/users/2/roles/2"
+URL="https://$TARGET/v1/domains/2/users/2/roles/2"
 PASSCODE=404
 deleteit
 
-NAME="get all roles for tenant and user"
-URL="https://$TARGET/v1/tenants/2/users/2/roles"
+NAME="get all roles for domain and user"
+URL="https://$TARGET/v1/domains/2/users/2/roles"
 PASSCODE=200
 getit
 
