@@ -1,1 +1,2 @@
-sqlite3 ./tokenidm.db < tokenidm.sql
+sqlite3 ./openidm.db < openidm.sql
+
