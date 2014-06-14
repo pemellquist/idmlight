@@ -1,0 +1,27 @@
+#!/bin/sh
+# starts, stops & restarts openidm 
+#
+
+
+case "$1" in
+start)
+	cd /opt/openidm
+	./openidm.sh start	
+;;
+
+stop)
+	cd /opt/openidm
+	./openidm.sh stop
+;;
+
+restart)
+	cd /opt/openidm
+	./openidm.sh stop
+	./openidm.sh start
+;;
+
+
+*)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
