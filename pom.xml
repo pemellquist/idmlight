@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.pem.tokenidm</groupId>
-  <artifactId>tokenidm</artifactId>
+  <groupId>org.pem.openidm</groupId>
+  <artifactId>openidm</artifactId>
   <version>0.1.00</version>
   <packaging>jar</packaging>
 
-  <name>tokenidm</name>
+  <name>openidm</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -25,7 +25,7 @@
         <artifactId>maven-jar-plugin</artifactId>        
         <configuration>
           <archive>
-            <manifestFile>src/main/resources/META-INF/tokenIDM.mf</manifestFile>
+            <manifestFile>src/main/resources/META-INF/openidm.mf</manifestFile>
           </archive>
         </configuration>
       </plugin>
@@ -35,7 +35,7 @@
             <configuration>
                  <archive>
                     <manifest>
-                        <mainClass>org.pem.tokenidm.TokenIDM</mainClass>
+                        <mainClass>org.pem.openidm.TokenIDM</mainClass>
                     </manifest>
                 </archive>
             

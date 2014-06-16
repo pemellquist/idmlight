@@ -3,9 +3,9 @@ PACKAGE_NAME=openidm
 PACKAGE_VERSION=1.00
 PACKAGE_OWNER=pemellquist@gmail.com
 PACKAGE_CONTROL=debian/DEBIAN/control
-PACKAGE_DESCRIPT="openidm : Open IDentity Management(IDM) Server"
+PACKAGE_DESCRIPT="openidm Open IDentity Management(IDM) Server"
 PACKAGE_LOCATION="opt/openidm"
-PACKAGE_JAR="/target/tokenidm-0.1.00-jar-with-dependencies.jar"
+PACKAGE_JAR="/target/openidm-0.1.00-jar-with-dependencies.jar"
 
 # create debian package directory and initialize
 rm -r -f $PACKAGE_NAME-$PACKAGE_VERSION

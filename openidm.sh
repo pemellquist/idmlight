@@ -1,6 +1,6 @@
 #!/bin/bash
-JAR="/opt/openidm/tokenidm-0.1.00-jar-with-dependencies.jar"
-KILLPATTERN="/opt/openidm/tokenidm-"
+JAR="/opt/openidm/openidm-0.1.00-jar-with-dependencies.jar"
+KILLPATTERN="/opt/openidm/openidm-"
 LOGCFG="file:/opt/openidm/log4j.properties"
 CONFIG="./openidm.config"
 NOW=$(date +"%F-%H%M%S")
@@ -21,8 +21,8 @@ then
 	then
 		echo "application     :" $JAR
 		echo "logging cfg     :" $LOGCFG
-		echo "tokenidm stdout :" $OPENIDMSTDOUT
-		echo "tokenidm log    :" $OPENIDMLOG
+		echo "openidm stdout  :" $OPENIDMSTDOUT
+		echo "openidm log     :" $OPENIDMLOG
 		java -Dlog4j.configuration=$LOGCFG -jar $JAR $CONFIG > $OPENIDMSTDOUT 2>&1 & 
 		echo "started"
 		exit 0
