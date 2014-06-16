@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.sql.*;
 import org.apache.log4j.Logger;
-import org.pem.openidm.TokenIDM;
+import org.pem.openidm.OpenIDM;
 import org.pem.openidm.model.Grant;
 import org.pem.openidm.model.Grants;
 
@@ -29,8 +29,8 @@ public class GrantStore {
    protected Connection dbConnect() throws StoreException {
       if ( dbConnection==null ) {
          try {           
-	    Class.forName (TokenIDM.tokenIDMConfig.dbDriver).newInstance ();
-	    dbConnection = DriverManager.getConnection (TokenIDM.tokenIDMConfig.dbPath); 
+	    Class.forName (OpenIDM.idmConfig.dbDriver).newInstance ();
+	    dbConnection = DriverManager.getConnection (OpenIDM.idmConfig.dbPath); 
             return dbConnection;
          }
          catch (Exception e) {
@@ -41,8 +41,8 @@ public class GrantStore {
          try {
             if ( dbConnection.isClosed()) {
                try {          
-		  Class.forName (TokenIDM.tokenIDMConfig.dbDriver).newInstance ();
-		  dbConnection = DriverManager.getConnection (TokenIDM.tokenIDMConfig.dbPath);
+		  Class.forName (OpenIDM.idmConfig.dbDriver).newInstance ();
+		  dbConnection = DriverManager.getConnection (OpenIDM.idmConfig.dbPath);
 		  return dbConnection;
                }
                catch (Exception e) {
