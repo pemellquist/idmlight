@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.pem.openidm.model.User; 
 import org.pem.openidm.model.Users;
-import org.pem.openidm.model.TokenIDMError;
+import org.pem.openidm.model.IDMError;
 import org.pem.openidm.persistence.UserStore;
 import org.pem.openidm.persistence.StoreException;
 	
@@ -38,9 +38,9 @@ public class UserHandler {
       }
       catch (StoreException se) {
          logger.error("StoreException : " + se);
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Internal error getting users");
-         return Response.status(500).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Internal error getting users");
+         return Response.status(500).entity(idmerror).build();
       }
       return Response.ok(users).build();
    }
@@ -57,24 +57,24 @@ public class UserHandler {
          longId= Long.parseLong(id);
       }
       catch (NumberFormatException nfe) {
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Invalid User id :" + id);
-         return Response.status(404).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Invalid User id :" + id);
+         return Response.status(404).entity(idmerror).build();
       }
       try {
          user = userStore.getUser(longId);
       }
       catch(StoreException se) {
          logger.error("Store Exception : " + se);
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Internal error getting user");
-         return Response.status(500).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Internal error getting user");
+         return Response.status(500).entity(idmerror).build();
       }
 
       if (user==null) {
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("User Not found!  id :" + id);
-         return Response.status(404).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("User Not found!  id :" + id);
+         return Response.status(404).entity(idmerror).build();
       }
       return Response.ok(user).build();
    }
@@ -99,9 +99,9 @@ public class UserHandler {
       }
       catch (StoreException se) {
          logger.error("Store Exception : " + se);
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Internal error creating user");
-         return Response.status(500).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Internal error creating user");
+         return Response.status(500).entity(idmerror).build();
       } 
 
       return Response.status(201).entity(user).build();
@@ -119,27 +119,27 @@ public class UserHandler {
          longId= Long.parseLong(id);
       }
       catch (NumberFormatException nfe) {
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Invalid User id :" + id);
-         return Response.status(404).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Invalid User id :" + id);
+         return Response.status(404).entity(idmerror).build();
       }
 
       try {
          user.setUserid((int)longId);
          user = userStore.putUser(user);
          if (user==null) {
-            TokenIDMError tokenidmerror = new TokenIDMError();
-            tokenidmerror.setMessage("Not found! User id :" + id);
-            return Response.status(404).entity(tokenidmerror).build();
+            IDMError idmerror = new IDMError();
+            idmerror.setMessage("Not found! User id :" + id);
+            return Response.status(404).entity(idmerror).build();
          }
 
          return Response.status(200).entity(user).build();
       }
       catch (StoreException se) {
          logger.error("StoreException : " + se);
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Internal error putting user");
-         return Response.status(500).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Internal error putting user");
+         return Response.status(500).entity(idmerror).build();
       }
    }
 
@@ -152,9 +152,9 @@ public class UserHandler {
          longId= Long.parseLong(id);
       }
       catch (NumberFormatException nfe) {
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Invalid User id :" + id);
-         return Response.status(404).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Invalid User id :" + id);
+         return Response.status(404).entity(idmerror).build();
       }
 
       try {
@@ -162,16 +162,16 @@ public class UserHandler {
          user.setUserid((int)longId);
          user = userStore.deleteUser(user);
          if (user==null) {
-            TokenIDMError tokenidmerror = new TokenIDMError();
-            tokenidmerror.setMessage("Not found! User id :" + id);
-            return Response.status(404).entity(tokenidmerror).build();
+            IDMError idmerror = new IDMError();
+            idmerror.setMessage("Not found! User id :" + id);
+            return Response.status(404).entity(idmerror).build();
          }
       }
       catch (StoreException se) {
          logger.error("StoreException : " + se);
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Internal error deleting user");
-         return Response.status(500).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Internal error deleting user");
+         return Response.status(500).entity(idmerror).build();
       }
 
       return Response.status(204).build();
