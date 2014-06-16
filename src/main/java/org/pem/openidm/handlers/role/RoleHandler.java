@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.pem.openidm.model.Role; 
 import org.pem.openidm.model.Roles;
-import org.pem.openidm.model.TokenIDMError;
+import org.pem.openidm.model.IDMError;
 import org.pem.openidm.persistence.RoleStore;
 import org.pem.openidm.persistence.StoreException;
 	
@@ -38,9 +38,9 @@ public class RoleHandler {
       }
       catch (StoreException se) {
          logger.error("StoreException : " + se);
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Internal error getting roles");
-         return Response.status(500).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Internal error getting roles");
+         return Response.status(500).entity(idmerror).build();
       }
       return Response.ok(roles).build();
    }
@@ -56,24 +56,24 @@ public class RoleHandler {
          longId= Long.parseLong(id);
       }
       catch (NumberFormatException nfe) {
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Invalid Role id :" + id);
-         return Response.status(404).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Invalid Role id :" + id);
+         return Response.status(404).entity(idmerror).build();
       }
       try {
          role = roleStore.getRole(longId);
       }
       catch(StoreException se) {
          logger.error("Store Exception : " + se);
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Internal error getting role");
-         return Response.status(500).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Internal error getting role");
+         return Response.status(500).entity(idmerror).build();
       }
 
       if (role==null) {
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Role Not found!  id :" + id);
-         return Response.status(404).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Role Not found!  id :" + id);
+         return Response.status(404).entity(idmerror).build();
       }
       return Response.ok(role).build();
    }
@@ -92,9 +92,9 @@ public class RoleHandler {
       }
       catch (StoreException se) {
          logger.error("Store Exception : " + se);
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Internal error creating role");
-         return Response.status(500).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Internal error creating role");
+         return Response.status(500).entity(idmerror).build();
       } 
 
       return Response.status(201).entity(role).build();
@@ -112,27 +112,27 @@ public class RoleHandler {
          longId= Long.parseLong(id);
       }
       catch (NumberFormatException nfe) {
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Invalid Role id :" + id);
-         return Response.status(404).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Invalid Role id :" + id);
+         return Response.status(404).entity(idmerror).build();
       }
 
       try {
          role.setRoleid((int)longId);
          role = roleStore.putRole(role);
          if (role==null) {
-            TokenIDMError tokenidmerror = new TokenIDMError();
-            tokenidmerror.setMessage("Not found! Role id :" + id);
-            return Response.status(404).entity(tokenidmerror).build();
+            IDMError idmerror = new IDMError();
+            idmerror.setMessage("Not found! Role id :" + id);
+            return Response.status(404).entity(idmerror).build();
          }
 
          return Response.status(200).entity(role).build();
       }
       catch (StoreException se) {
          logger.error("StoreException : " + se);
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Internal error putting role");
-         return Response.status(500).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Internal error putting role");
+         return Response.status(500).entity(idmerror).build();
       }
    }
 
@@ -145,9 +145,9 @@ public class RoleHandler {
          longId= Long.parseLong(id);
       }
       catch (NumberFormatException nfe) {
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Invalid Role id :" + id);
-         return Response.status(404).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Invalid Role id :" + id);
+         return Response.status(404).entity(idmerror).build();
       }
 
       try {
@@ -155,16 +155,16 @@ public class RoleHandler {
          role.setRoleid((int)longId);
          role = roleStore.deleteRole(role);
          if (role==null) {
-            TokenIDMError tokenidmerror = new TokenIDMError();
-            tokenidmerror.setMessage("Not found! Role id :" + id);
-            return Response.status(404).entity(tokenidmerror).build();
+            IDMError idmerror = new IDMError();
+            idmerror.setMessage("Not found! Role id :" + id);
+            return Response.status(404).entity(idmerror).build();
          }
       }
       catch (StoreException se) {
          logger.error("StoreException : " + se);
-         TokenIDMError tokenidmerror = new TokenIDMError();
-         tokenidmerror.setMessage("Internal error deleting role");
-         return Response.status(500).entity(tokenidmerror).build();
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Internal error deleting role");
+         return Response.status(500).entity(idmerror).build();
       }
 
       return Response.status(204).build();
