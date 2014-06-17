@@ -4,6 +4,21 @@ OpenIDM is a simple identity management system which can be used with a variety 
 
 Openidm is implemented in Java and uses an SQL database to persist the IDM model. The reference implementation uses SQLite but any compatible Java JBDC SQL database may also be used. Openidm can be run in any Java runtime environment but the reference implementation allows building a debian package which can be depolyed as a Linux service.
 
+Design Overview
+-----------------
+Openidm is a stand-alone REST service which listens for REST requests on its own https port. Https is used for privacy when making REST requests allowing command line or GUI access. The keystore file provided is self signed but can be replaced with any properly signed keystore of your choosing. A configuration file, **openidm.config**, allows defining a number of run time settings of openidm including security settings and the specific JDBC driver to be used.<br>
+
+There are three main REST resources projected through the openidm REST API. They are ..<br>
+**domain** A domain is a top level container for collecting users. E.g. this might be an organization's name like 'sales', 'R&D', or the name of a company like 'WidgetCo'.<br>
+  
+**user**
+
+**role**
+
+These can be considered as indepedent resources which have their own CRUD operations and unique identifiers. The **api.md** file has details on the actual APIs.<br>
+
+
+
 
 Getting and building openidm
 ------------------
@@ -52,12 +67,12 @@ Once the debian package has been installed the following directories and files a
 Installed binaries, certificate files, logging properties, config, run script and sql schema
 
 /var/log/openidm<br/>
-Destination for logging files
+Destination for logging files. Logs can be helful when looking at problems.
 
-/etc/init.d/openidm,br/>
+/etc/init.d/openidm<br/>
 Service start, stop and restart init.d script
 
-Testing tokenidm
+Testing openidm
 ------------------------------
 A set of system level tests are available to test an installed openidm server. These tests are meant to drive all the openidm REST APIs and check results. To run these tests, a clean database is required. <br/>
 
