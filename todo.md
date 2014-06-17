@@ -2,6 +2,12 @@ general exceptions are always in xml, how to make these follow content-type?
 
 order of attribs would be nice
 
-timestamps for created and last updated for tenants,users,roles and creds
+timestamps for created and last updated for domains,users,roles and grants 
 
-junit tests which can bring up jetty and drive many requests
+length checking on all attribs being POSTED or PUT 
+
+DELETE of domain or user needs to verify that it is not referenced in the grant table
+
+supress password on all responses
+
+
