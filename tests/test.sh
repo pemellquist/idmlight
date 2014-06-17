@@ -7,26 +7,33 @@ FAILCOUNT=0
 getit() {
 ((TESTCOUNT++))
 echo '['$TESTCOUNT']' $NAME
+echo GET $URL
+echo "Desired Result=" $PASSCODE
 STATUS=$(curl -X GET -k -s -H Accept:application/json -o result.json -w '%{http_code}' $URL)
 if [ $STATUS -eq $PASSCODE ]; then
    ((PASSCOUNT++))
    cat result.json | python -mjson.tool
-   echo "[PASS]"
+   echo "[PASS] Status=" $STATUS
 else
+   cat result.json | python -mjson.tool
    echo "[FAIL] Status=" $STATUS
    ((FAILCOUNT++))
 fi
 echo
 }
 
+
 deleteit() {
 ((TESTCOUNT++))
 echo '['$TESTCOUNT']' $NAME
+echo DELETE $URL
+echo "Desired Result=" $PASSCODE
 STATUS=$(curl -X DELETE -k -s -H Accept:application/json -o result.json -w '%{http_code}' $URL)
 if [ $STATUS -eq $PASSCODE ]; then
    ((PASSCOUNT++))
-   echo "[PASS]"
+   echo "[PASS] Status=" $STATUS
 else
+   cat result.json | python -mjson.tool 
    echo "[FAIL] Status=" $STATUS
    ((FAILCOUNT++))
 fi
@@ -36,12 +43,16 @@ echo
 postit() {
 ((TESTCOUNT++))
 echo '['$TESTCOUNT']' $NAME
+echo POST $URL
+echo "Desired Result=" $PASSCODE
+echo "POST File=" $POSTFILE
 STATUS=$(curl -X POST -k -s -H "Content-type:application/json" --data-binary "@"$POSTFILE -o result.json -w '%{http_code}' $URL)
 if [ $STATUS -eq $PASSCODE ]; then
    ((PASSCOUNT++))
    cat result.json | python -mjson.tool
-   echo "[PASS]"
+   echo "[PASS] Status=" $STATUS
 else
+   cat result.json | python -mjson.tool
    echo "[FAIL] Status=" $STATUS
    ((FAILCOUNT++))
 fi
@@ -51,12 +62,16 @@ echo
 putit() {
 ((TESTCOUNT++))
 echo '['$TESTCOUNT']' $NAME
+echo PUT $URL
+echo "Desired Result=" $PASSCODE
+echo "PUT file=" $PUTFILE
 STATUS=$(curl -X PUT -k -s -H "Content-type:application/json" --data-binary "@"$PUTFILE -o result.json -w '%{http_code}' $URL)
 if [ $STATUS -eq $PASSCODE ]; then
    ((PASSCOUNT++))
    cat result.json | python -mjson.tool
-   echo "[PASS]"
+   echo "[PASS] Status=" $STATUS
 else
+   cat result.json | python -mjson.tool
    echo "[FAIL] Status=" $STATUS
    ((FAILCOUNT++))
 fi
@@ -108,7 +123,7 @@ putit
 
 NAME="create a new domain"
 URL="https://$TARGET/v1/domains"
-POSTFILE=domain.json
+POSTFILE=domain2.json
 PASSCODE=201
 postit
 
@@ -166,7 +181,7 @@ putit
 
 NAME="create a new user"
 URL="https://$TARGET/v1/users"
-POSTFILE=user.json
+POSTFILE=user2.json
 PASSCODE=201
 postit
 
@@ -184,7 +199,7 @@ getit
 
 NAME="create a new role"
 URL="https://$TARGET/v1/roles"
-POSTFILE=role.json
+POSTFILE=role-user.json
 PASSCODE=201
 postit
 
@@ -205,19 +220,19 @@ deleteit
 
 NAME="create a new role"
 URL="https://$TARGET/v1/roles"
-POSTFILE=role.json
+POSTFILE=role-user.json
 PASSCODE=201
 postit
 
 NAME="update role 2"
 URL="https://$TARGET/v1/roles/2"
-PUTFILE=role-put.json
+PUTFILE=role-user.json
 PASSCODE=200
 putit
 
 NAME="create a new role"
 URL="https://$TARGET/v1/roles"
-POSTFILE=role.json
+POSTFILE=role-admin.json
 PASSCODE=201
 postit
 
@@ -259,6 +274,29 @@ NAME="get all roles for domain and user"
 URL="https://$TARGET/v1/domains/2/users/2/roles"
 PASSCODE=200
 getit
+
+NAME="grant a role"
+URL="https://$TARGET/v1/domains/2/users/2/roles"
+POSTFILE=grant.json
+PASSCODE=201
+postit
+
+NAME="grant a role"
+URL="https://$TARGET/v1/domains/2/users/2/roles"
+POSTFILE=grant2.json
+PASSCODE=201
+postit
+
+NAME="get all roles for domain and user"
+URL="https://$TARGET/v1/domains/2/users/2/roles"
+PASSCODE=200
+getit
+
+NAME="get all roles for domain, user and pwd"
+URL="https://$TARGET/v1/domains/2/users/roles"
+POSTFILE=userpwd.json
+PASSCODE=200
+postit
 
 
 #

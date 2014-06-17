@@ -1,1 +1,1 @@
-{"description":"user 123 descr","email":"user1@gmail.com","enabled":"false","id":"2","name":"user 123","password":"foobar"}
+{"domainid":"2","roles":{"roles":[{"description":"A user role with limited access","name":"user","roleid":"2"},{"description":"An admin role with full access","name":"admin","roleid":"3"}]},"userid":"2","username":"peter"}
