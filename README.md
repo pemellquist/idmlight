@@ -9,15 +9,13 @@ Design Overview
 Openidm is a stand-alone REST service which listens for REST requests on its own https port. Https is used for privacy when making REST requests allowing command line or GUI access. The keystore file provided is self signed but can be replaced with any properly signed keystore of your choosing. A configuration file, **openidm.config**, allows defining a number of run time settings of openidm including security settings and the specific JDBC driver to be used.<br>
 
 There are three main REST resources projected through the openidm REST API. They are ..<br>
-**domain** A domain is a top level container for collecting users. E.g. this might be an organization's name like 'sales', 'R&D', or the name of a company like 'WidgetCo'.<br>
+**1. Domain** A domain is a top level container for collecting users. E.g. this might be an organization's name like 'sales', 'R&D', or the name of a company like 'WidgetCo'.<br>
   
-**user**
+**2. User** A user defines an entity which has a name and set of properties such as contact, email address and name. A user may belong to more than one entity. For example, user Joe may belong to both domain 'sales' and 'R&D' while user Tom may only belong to 'R&D'. 
 
-**role**
+**3.Role** A role is a defined role name which openidm allows to be defined as any value but once defined can be associated with a domain and user. This association is termed as a 'grant'. For example, if we define a role of 'admin' we can then define a grant of domain 'R&D',user 'Joe' and role 'admin'.<br>   
 
-These can be considered as indepedent resources which have their own CRUD operations and unique identifiers. The **api.md** file has details on the actual APIs.<br>
-
-
+The **api.md** file has details on the actual APIs and examples.<br>
 
 
 Getting and building openidm
