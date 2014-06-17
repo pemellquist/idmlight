@@ -2,22 +2,24 @@ openidm
 ===============
 OpenIDM is a simple identity management system which can be used with a variety of systems which require IDM. OpenIDM is meant to be simple and effective providing a simple identity model which models domains, users, roles and grants. Together, these can be used to construct your own Role Based Access Control (RBAC). OpenIDM runs as a service with a set of RESTful interfaces allowing full CRUD operations on domain, user and role resources.  
 
+Openidm is implemented in Java and uses an SQL database to persist the IDM model. The reference implementation uses SQLite but any compatible Java JBDC SQL database may also be used. Openidm can be run in any Java runtime environment but the reference implementation allows building a debian package which can be depolyed as a Linux service.
 
-Getting and building tokenidm
+
+Getting and building openidm
 ------------------
-1) Get Ubuntu OS, 12.04 64 bit bit OS is recommended<br/>
-(other OSs are possible but these instructions assume this Ubuntu & Debian packages) 
+1) Get your Operationg system(Ubuntu OS, 12.04 64 bit bit OS is recommended)<br/>
+Other OSs are possible but these instructions assume Debian packages for installing all dependencies. 
 
-2) Install tokenidm api sources, clone from git repo<br/>
-$ git clone https://github.com/pemellquist/tokenidm.git <your local tokenidm location> 
+2) Install openidm sources, clone these from github repo. This assumes that you already have the git client installed.<br/>
+**$ git clone https://github.com/pemellquist/openidm.git <your local tokenidm location>** 
 
-3) Install maven, needed to building<br/>
-$ sudo apt-get install maven2 
+3) Install maven, needed to building. Maven2 has been verified to work, new versions may also work.<br/>
+**$ sudo apt-get install maven2** 
 
-4) Install java 7 <br/>
-$ sudo add-apt-repository ppa:webupd8team/java -y <br/>
-$ sudo apt-get update <br/>
-$ sudo apt-get install oracle-java7-installer </br>
+4) Install java 7. There are a variety of places where you can pick up the JDK. One is listed below.<br/>
+**$ sudo add-apt-repository ppa:webupd8team/java -y <br/>**
+**$ sudo apt-get update <br/>**
+**$ sudo apt-get install oracle-java7-installer </br>**
 
 5) Install Debian Package Make tool <br/>
 $ sudo apt-get install dh-make
@@ -30,6 +32,8 @@ This will build Java jar and from it a debian package.
 $ ./stage.sh<br/>
 The stage script will install the created debian package and start the tokenidm server. You may also start and stop the tokenidm server as a service.<br/>
 $ service tokenidm start | stop
+
+
 
 tokenidm runtime directories and files
 --------------------------------
