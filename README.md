@@ -29,41 +29,37 @@ Openidm uses maven for building and resolving dependencies hence everything is d
 **$ <your local directory>./build.sh<br/>**
 If the build was a success you should see something like ...<br>
 ```
-     [INFO] ------------------------------------------------------------------------
-     [INFO] BUILD SUCCESSFUL
-     [INFO] ------------------------------------------------------------------------
-     [INFO] Total time: 6 seconds
-     [INFO] Finished at: Tue Jun 17 13:50:53 PDT 2014
-     [INFO] Final Memory: 45M/749M
-     [INFO] ------------------------------------------------------------------------
-     make debian package
-     openidm server Debian Package Created in : openidm-1.00/openidm-1.00.deb
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESSFUL
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 6 seconds
+[INFO] Finished at: Tue Jun 17 13:50:53 PDT 2014
+[INFO] Final Memory: 45M/749M
+[INFO] ------------------------------------------------------------------------
+make debian package
+openidm server Debian Package Created in : openidm-1.00/openidm-1.00.deb
 ```
 
-
-7) Install deb package and run it <br/>
-$ ./stage.sh<br/>
-The stage script will install the created debian package and start the tokenidm server. You may also start and stop the tokenidm server as a service.<br/>
-$ service tokenidm start | stop
+7) You may manually install the resultant debian package on your system using the linux **dpkg** tool and then perform a service start, stop or retsart **sudo service openidm start**. For convenience and staging script has been provided which will install and start everything up.<br/>
+**$ ./stage.sh<br/>**
 
 
-
-tokenidm runtime directories and files
+openidm runtime directories and files
 --------------------------------
 Once the debian package has been installed the following directories and files are created.<br/>
 
-/opt/tokenidm<br/>
+/opt/openidm<br/>
 Installed binaries, certificate files, logging properties, config, run script and sql schema
 
-/var/log/tokenidm<br/>
+/var/log/openidm<br/>
 Destination for logging files
 
-/etc/init.d/tokenidm,br/>
+/etc/init.d/openidm,br/>
 Service start, stop and restart init.d script
 
 Testing tokenidm
 ------------------------------
-A set of system level tests are available to test an installed tokenidm serve. These tests are meant to drive all the tokenidm REST APIs and check results. To run these tests, a clean database is required. <br/>
+A set of system level tests are available to test an installed openidm server. These tests are meant to drive all the openidm REST APIs and check results. To run these tests, a clean database is required. <br/>
 
 After having installed tokenidm, the database tables are required to be dropped. <br/>
 $<installed source dir>/tests/cleardb.sh
