@@ -11,7 +11,7 @@ Getting and building openidm
 Other OSs are possible but these instructions assume Debian packages for installing all dependencies. 
 
 2) Install openidm sources, clone these from github repo. This assumes that you already have the git client installed.<br/>
-**$ git clone https://github.com/pemellquist/openidm.git <your local tokenidm location>** 
+**$ git clone https://github.com/pemellquist/openidm.git <your local dorectory>** 
 
 3) Install maven, needed to building. Maven2 has been verified to work, new versions may also work.<br/>
 **$ sudo apt-get install maven2** 
@@ -21,12 +21,12 @@ Other OSs are possible but these instructions assume Debian packages for install
 **$ sudo apt-get update <br/>**
 **$ sudo apt-get install oracle-java7-installer </br>**
 
-5) Install Debian Package Make tool <br/>
-$ sudo apt-get install dh-make
+5) Install Debian Package Make tool. This will you to build a debian package which can be installed on your Debian based system.<br/>
+**$ sudo apt-get install dh-make**
 
-6) Build <br/> 
-$ ./build.sh<br/>
-This will build Java jar and from it a debian package. 
+6) Building openidm<br/> 
+Openidm uses maven for building and resolving dependencies hence everything is defined in the standard maven pom.xml file. You may choose to run **mvn clean install** and **mvn assembly:assembly** and then a provided script to build the debian package or you can simply run the provided build shell script which will build and package everything.
+**$ <your local directory>./build.sh<br/>**
 
 7) Install deb package and run it <br/>
 $ ./stage.sh<br/>
