@@ -28,6 +28,7 @@ Other OSs are possible but these instructions assume Debian packages for install
 Openidm uses maven for building and resolving dependencies hence everything is defined in the standard maven pom.xml file. You may choose to run **mvn clean install** and **mvn assembly:assembly** and then a provided script to build the debian package or you can simply run the provided build shell script which will build and package everything.<br>
 **$ <your local directory>./build.sh<br/>**
 If the build was a success you should see something like ...<br>
+'''
      [INFO] ------------------------------------------------------------------------
      [INFO] BUILD SUCCESSFUL
      [INFO] ------------------------------------------------------------------------
@@ -37,7 +38,7 @@ If the build was a success you should see something like ...<br>
      [INFO] ------------------------------------------------------------------------
      make debian package
      openidm server Debian Package Created in : openidm-1.00/openidm-1.00.deb
-
+'''
 
 
 7) Install deb package and run it <br/>
