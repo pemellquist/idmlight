@@ -16,5 +16,6 @@ sqlite> select * from tenants;
 sqlite> select * from users;
 1|user A|usera@gmail.com|changeme|descr user A|1
 2|user B|userb@gmail.com|changeme|descr user B|1
-sqlite> 
+
+sqlite>.schema users
 
