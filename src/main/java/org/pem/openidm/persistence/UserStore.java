@@ -117,6 +117,32 @@ public class UserStore {
       return users;
    }
 
+   public Users getUsers(String username) throws StoreException {
+      Users users = new Users();
+      List<User> userList = new ArrayList<User>();
+      Connection conn = dbConnect();
+      Statement stmt=null;
+      String query = "SELECT * FROM users WHERE name='" + username +"'";
+      try {
+         stmt=conn.createStatement();
+         ResultSet rs=stmt.executeQuery(query);
+         while (rs.next()) {
+            User user = rsToUser(rs);
+            userList.add(user);
+         }
+         rs.close();
+         stmt.close();
+         dbClose();
+      }
+      catch (SQLException s) {
+         dbClose();
+         throw new StoreException("SQL Exception : " + s);
+      }
+      users.setUsers(userList);
+      return users;
+   }
+
+
    public User getUser(long id) throws StoreException {
       Connection conn = dbConnect();
       Statement stmt=null;
