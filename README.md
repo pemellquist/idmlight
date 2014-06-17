@@ -1,8 +1,7 @@
-tokenidm server 
+openidm 
 ===============
-TokenIDM is a simple stand-alone identity manager server and token generator/validator which can be used with a variety of REST services that require token based API authentication. TokenIDM is similar to Openstack's Keystone IDM service but it is meant to be simplier and it is implemented in Java. 
+OpenIDM is a simple identity management system which can be used with a variety of systems which require IDM. OpenIDM is meant to be simple and effective providing a simple identity model which models domains, users, roles and grants. Together, these can be used to construct your own Role Based Access Control (RBAC). OpenIDM runs as a service with a set of RESTful interfaces allowing full CRUD operations on domain, user and role resources.  
 
-This README defines the required tools and steps to build and run tokenidm. There are other combinations of OSs, libraries and tools possible.
 
 Getting and building tokenidm
 ------------------
