@@ -17,11 +17,14 @@ import java.util.List;
 import java.util.ArrayList;
 import org.pem.openidm.model.Domain; 
 import org.pem.openidm.model.User;
+import org.pem.openidm.model.Users;
 import org.pem.openidm.model.Role;
 import org.pem.openidm.model.Roles;
 import org.pem.openidm.model.Grant;
 import org.pem.openidm.model.Grants;
 import org.pem.openidm.model.Domains;
+import org.pem.openidm.model.UserPwd;
+import org.pem.openidm.model.Claim; 
 import org.pem.openidm.model.IDMError;
 import org.pem.openidm.persistence.DomainStore;
 import org.pem.openidm.persistence.UserStore;
@@ -307,6 +310,108 @@ public class DomainHandler {
       return Response.status(201).entity(grant).build();
    }
 
+
+   @POST
+   @Path("/{did}/users/roles")
+   @Consumes("application/json")
+   @Produces("application/json")
+   public Response validateUser( @Context UriInfo info,
+                                 @PathParam("did") String did,
+                                 UserPwd userpwd) {
+
+      logger.info("GET /domains/"+did+"/users");
+      long longDid=0;
+      Domain domain=null;
+      Claim claim = new Claim();
+      Roles roles = new Roles();
+      List<Role> roleList = new ArrayList<Role>();
+
+      // validate domain id
+      try {
+         longDid= Long.parseLong(did);
+      }
+      catch (NumberFormatException nfe) {
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Invalid Domain id :" + did);
+         return Response.status(404).entity(idmerror).build();
+      }
+      try {
+         domain = domainStore.getDomain(longDid);
+      }
+      catch(StoreException se) {
+         logger.error("StoreException : " + se);
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Internal error getting domain");
+         return Response.status(500).entity(idmerror).build();
+      }
+      if (domain==null) {
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Not found! Domain id :" + did);
+         return Response.status(404).entity(idmerror).build();
+      }
+
+      // check request body for username and pwd
+      String username = userpwd.getUsername();
+      if (username==null) {
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("username not specfied in request body");
+         return Response.status(400).entity(idmerror).build();
+      }
+      String pwd = userpwd.getUserpwd();
+      if (pwd==null) {
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("userpwd not specfied in request body");
+         return Response.status(400).entity(idmerror).build();
+      }
+
+      // find userid for user 
+      try {
+         Users users = userStore.getUsers(username);
+         List<User> userList = users.getUsers();
+         if (userList.size()==0) {
+            IDMError idmerror = new IDMError();
+            idmerror.setMessage("did not find username: "+username);
+            return Response.status(404).entity(idmerror).build();
+         }
+         User user = userList.get(0);
+         String userPwd = user.getPassword();
+         String reqPwd = userpwd.getUserpwd();
+         if (!userPwd.equals(reqPwd)) {
+            IDMError idmerror = new IDMError();
+            idmerror.setMessage("password does not match for username: "+username);
+            return Response.status(401).entity(idmerror).build(); 
+         }
+         claim.setDomainid((int)longDid);
+         claim.setUsername(username);
+         claim.setUserid(user.getUserid());
+         try {
+            Grants grants = grantStore.getGrants(longDid,user.getUserid());
+            List<Grant> grantsList = grants.getGrants();
+            for (int i=0; i < grantsList.size(); i++) {
+               Grant grant = grantsList.get(i);
+               Role role = roleStore.getRole(grant.getRoleid());
+               roleList.add(role);
+            }
+         }
+         catch (StoreException se) {
+            logger.error("StoreException : " + se);
+            IDMError idmerror = new IDMError();
+            idmerror.setMessage("Internal error getting Roles");
+            return Response.status(500).entity(idmerror).build();
+         }
+         roles.setRoles(roleList);
+         claim.setRoles(roles); 
+      }
+      catch(StoreException se) {
+         logger.error("StoreException : " + se);
+         IDMError idmerror = new IDMError();
+         idmerror.setMessage("Internal error getting user");
+         return Response.status(500).entity(idmerror).build();
+      }
+
+      return Response.ok(claim).build();
+   }  
+
    @GET
    @Path("/{did}/users/{uid}/roles")
    @Produces("application/json")
@@ -490,7 +595,6 @@ public class DomainHandler {
          idmerror.setMessage("Internal error creating grant");
          return Response.status(500).entity(idmerror).build();
       }
-
 
       return Response.status(204).build();
    }
