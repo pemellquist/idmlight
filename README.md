@@ -1,14 +1,13 @@
 openidm 
 ===============
-OpenIDM is a simple identity management system which can be used with a variety of systems which require IDM. OpenIDM is meant to be simple and effective providing a simple identity model which models domains, users, roles and grants. Together, these can be used to construct your own Role Based Access Control (RBAC). OpenIDM runs as a service with a set of RESTful interfaces allowing full CRUD operations on domain, user and role resources.  
+OpenIDM is a simple identity management server which can be used with a variety of systems which require Identity management and Role Based Access Control (RBAC). OpenIDM is meant to be simple and effective providing a simple identity model which models domains, users, roles and grants. Together, these can be used to enforce your own (RBAC). OpenIDM has a set of RESTful interfaces allowing full CRUD operations on IDM resources.  
 
 Role based access controls (RBAC) simplify routine account management operations and facilitate security audits. System administrators do not assign permissions directly to individual user accounts. Instead, individuals acquire access through their roles within an organization, which eliminates the need to edit a potentially large (and frequently changing) number of resource permissions and user rights assignments when creating, modifying, or deleting user accounts. Unlike traditional access control lists, permissions in RBAC describe meaningful operations within a particular application or system instead of the underlying low-level data object access methods. Storing roles and permissions in a centralized database or directory service simplifies the process of ascertaining and controlling role memberships and role permissions.
 
 
-Openidm is implemented in Java and uses an SQL database to persist the IDM model. The reference implementation uses SQLite but any compatible Java JBDC SQL database may also be used. Openidm can be run in any Java runtime environment but the reference implementation allows building a debian package which can be depolyed as a Linux service.
-
 Design Overview
 -----------------
+Openidm is implemented in Java and uses an SQL database to persist the IDM model. The reference implementation uses SQLite but any compatible Java JBDC SQL database may also be used. Openidm can be run in any Java runtime environment but the reference implementation allows building a debian package which can be depolyed as a Linux service.
 Openidm is a stand-alone REST service which listens for REST requests on its own https port. Https is used for privacy when making REST requests allowing command line or GUI access. The keystore file provided is self signed but can be replaced with any properly signed keystore of your choosing. A configuration file, **openidm.config**, allows defining a number of run time settings of openidm including security settings and the specific JDBC driver to be used.<br>
 
 There are three main REST resources projected through the openidm REST API. They are ..<br>
