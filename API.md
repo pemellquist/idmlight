@@ -63,18 +63,11 @@ The following is a summary of all supported OpenIDM API resources and methods. E
 |Resource            |Operation                                 |Method |Path                                                          |
 |:-------------------|:-----------------------------------------|:------|:-------------------------------------------------------------|
 |Versions            |Get  API version information              |GET    |{baseURI}/                                                    | 
-|Load Balancer       |Get list of all load balancers            |GET    |{baseURI}/{ver}/loadbalancers                                 | 
-|Load Balancer       |Get load balancer details                 |GET    |{baseURI}/{ver}/loadbalancers/{loadbalancerId}                |
-|Load Balancer       |Create a new load balancer                |POST   |{baseURI}/{ver}/loadbalancers                                 |
-|Load Balancer       |Update load balancer attributes           |PUT    |{baseURI}/{ver}/loadbalancers/{loadbalancerId}                | 
-|Load Balancer       |Delete an existing load balancer          |DELETE |{baseURI}/{ver}/loadbalancers/{loadbalancerId}                | 
-|Node                |Get list of load balancer nodes           |GET    |{baseURI}/{ver}/loadbalancers/{loadbalancerId}/nodes          |
-|Node                |Get a specific load balancer node         |GET    |{baseURI}/{ver}/loadbalancers/{loadbalancerId}/nodes/{nodeId} |
-|Node                |Create a new load balancer node           |POST   |{baseURI}/{ver}/loadbalancers/{loadbalancerId}/nodes          |
-|Node                |Update a load balancer node               |PUT    |{baseURI}/{ver}/loadbalancers/{loadbalancerId}/nodes/{nodeId} |
-|Node                |Delete a load balancer node               |DELETE |{baseURI}/{ver}/loadbalancers/{loadbalancerId}/nodes/{nodeId} |
-|Virtual IP          |Get list of virtual IPs                   |GET    |{baseURI}/{ver}/loadbalancers/{loadbalancerId}/virtualips     |
-
+|Domains             |Get list of all Domains                   |GET    |{baseURI}/{ver}/domains                                       | 
+|Domains             |Get a specific Domain                     |GET    |{baseURI}/{ver}/domains/{domainid}                            |
+|Domains             |Create a new Domain                       |POST   |{baseURI}/{ver}/domains                                       |
+|Domains             |Update a Domain                           |PUT    |{baseURI}/{ver}/domains/{domainid}                            |
+|Domains             |Delete a Domain                           |DELETE |{baseURI}/{ver}/domains/{domainid}                            |
 
 ### 5.2 Common Request Headers 
 
@@ -84,7 +77,7 @@ The following is a summary of all supported OpenIDM API resources and methods. E
 
 **Content-Length** - The length of the request body in octets (8-bit bytes).
 
-**Content-Type** - The Internet media type of the request body. Used with POST and PUT requests. HP Cloud LBaaS API supports 'application/json'.
+**Content-Type** - The Internet media type of the request body. Used with POST and PUT requests. The API supports 'application/json'.
 
 
 ### 5.3 Common Response Headers 
