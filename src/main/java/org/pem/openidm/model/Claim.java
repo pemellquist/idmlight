@@ -1,13 +1,15 @@
 package org.pem.openidm.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
+import java.util.ArrayList;
 
 @XmlRootElement(name = "Claim")
 public class Claim {
    private Integer domainid;
    private Integer userid; 
    private String username;
-   private Roles roles;
+   private List<Role> roles;
 
    public Integer getDomainid() {
       return domainid;
@@ -33,11 +35,11 @@ public class Claim {
       this.username = name;
    }  
 
-   public Roles getRoles() {
+   public List<Role> getRoles() {
       return roles;
    }
 
-   public void setRoles(Roles roles) {
+   public void setRoles(List<Role> roles) {
       this.roles = roles;
    }
 

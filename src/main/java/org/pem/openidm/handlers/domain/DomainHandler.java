@@ -323,7 +323,6 @@ public class DomainHandler {
       long longDid=0;
       Domain domain=null;
       Claim claim = new Claim();
-      Roles roles = new Roles();
       List<Role> roleList = new ArrayList<Role>();
 
       // validate domain id
@@ -399,8 +398,7 @@ public class DomainHandler {
             idmerror.setMessage("Internal error getting Roles");
             return Response.status(500).entity(idmerror).build();
          }
-         roles.setRoles(roleList);
-         claim.setRoles(roles); 
+         claim.setRoles(roleList); 
       }
       catch(StoreException se) {
          logger.error("StoreException : " + se);
