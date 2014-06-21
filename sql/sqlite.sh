@@ -1,2 +1,2 @@
-sqlite3 ./openidm.db < openidm.sql
+sqlite3 ./idmlight.db < idmlight.sql
 

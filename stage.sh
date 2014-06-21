@@ -1,4 +1,4 @@
-sudo service openidm stop
-sudo dpkg -i openidm-1.00/openidm-1.00.deb
-sudo service openidm start
+sudo service idmlight stop
+sudo dpkg -i idmlight-1.00/idmlight-1.00.deb
+sudo service idmlight start
 
