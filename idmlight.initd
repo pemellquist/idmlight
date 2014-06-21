@@ -1,0 +1,27 @@
+#!/bin/sh
+# starts, stops & restarts idmlight 
+#
+
+
+case "$1" in
+start)
+	cd /opt/idmlight
+	./idmlight.sh start	
+;;
+
+stop)
+	cd /opt/idmlight
+	./idmlight.sh stop
+;;
+
+restart)
+	cd /opt/idmlight
+	./idmlight.sh stop
+	./idmlight.sh start
+;;
+
+
+*)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
