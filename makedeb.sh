@@ -29,7 +29,7 @@ echo "Maintainer: "$PACKAGE_OWNER >> $PACKAGE_CONTROL
 echo "Description: "$PACKAGE_DESCRIPT >> $PACKAGE_CONTROL
 
 # copy openidm specific files to target location
-cp ../openidm.config debian/$PACKAGE_LOCATION
+cp ../idmlight.config debian/$PACKAGE_LOCATION
 cp ../log4j.properties debian/$PACKAGE_LOCATION
 cp ../openidm.sh debian/$PACKAGE_LOCATION
 cp ../keystore.jks debian/$PACKAGE_LOCATION

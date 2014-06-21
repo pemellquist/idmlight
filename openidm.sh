@@ -2,7 +2,7 @@
 JAR="/opt/openidm/openidm-0.1.00-jar-with-dependencies.jar"
 KILLPATTERN="/opt/openidm/openidm-"
 LOGCFG="file:/opt/openidm/log4j.properties"
-CONFIG="./openidm.config"
+CONFIG="./idmlight.config"
 NOW=$(date +"%F-%H%M%S")
 OPENIDMSTDOUT=/var/log/openidm/openidm-stdout-$NOW.log
 OPENIDMLOG=/var/log/openidm/openidm.log
