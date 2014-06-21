@@ -1,6 +1,6 @@
 idmlight 
 ===============
-IDMLight is a simple identity management server which can be used with a variety of systems which require Identity management and Role Based Access Control (RBAC). IDMLight is meant to be simple and effective providing a simple identity model which models domains, users, roles and grants. Together, these can be used to enforce your own (RBAC). OpenIDM has a set of RESTful interfaces allowing full CRUD operations on IDM resources.  
+IDMLight is a simple identity management server which can be used with a variety of systems which require Identity management and Role Based Access Control (RBAC). IDMLight is meant to be simple and effective providing a simple identity model which models domains, users, roles and grants. Together, these can be used to enforce your own (RBAC). Idmlight has a set of RESTful interfaces allowing full CRUD operations on IDM resources.  
 
 Role based access controls (RBAC) simplify routine account management operations and facilitate security audits. System administrators do not assign permissions directly to individual user accounts. Instead, individuals acquire access through their roles within an organization, which eliminates the need to edit a potentially large (and frequently changing) number of resource permissions and user rights assignments when creating, modifying, or deleting user accounts. Unlike traditional access control lists, permissions in RBAC describe meaningful operations within a particular application or system instead of the underlying low-level data object access methods. Storing roles and permissions in a centralized database or directory service simplifies the process of ascertaining and controlling role memberships and role permissions.
 
@@ -8,7 +8,7 @@ Role based access controls (RBAC) simplify routine account management operations
 Design Overview
 -----------------
 IDMLight is implemented in Java and uses an SQL database to persist the IDM model. The reference implementation uses SQLite but any compatible Java JBDC SQL database may also be used. Openidm can be run in any Java runtime environment but the reference implementation allows building a debian package which can be depolyed as a Linux service.
-idmlight is a stand-alone REST service which listens for REST requests on its own https port. Https is used for privacy when making REST requests allowing command line or GUI access. The keystore file provided is self signed but can be replaced with any properly signed keystore of your choosing. A configuration file, **idmlight.config**, allows defining a number of run time settings of openidm including security settings and the specific JDBC driver to be used.<br>
+idmlight is a stand-alone REST service which listens for REST requests on its own https port. Https is used for privacy when making REST requests allowing command line or GUI access. The keystore file provided is self signed but can be replaced with any properly signed keystore of your choosing. A configuration file, **idmlight.config**, allows defining a number of run time settings of idmlight including security settings and the specific JDBC driver to be used.<br>
 
 There are three main REST resources projected through the idmlight REST API. They are ..<br>
 **1. Domain** A domain is a top level container for collecting users. E.g. this might be an organization's name like 'sales', 'R&D', or the name of a company like 'WidgetCo'.<br>
@@ -55,7 +55,7 @@ make debian package
 idmlight server Debian Package Created in : idmlight-1.00/idmlightm-1.00.deb
 ```
 
-7) You may manually install the resultant debian package on your system using the linux **dpkg** tool and then perform a service start, stop or retsart **sudo service openidm start**. For convenience and staging script has been provided which will install and start everything up.<br/>
+7) You may manually install the resultant debian package on your system using the linux **dpkg** tool and then perform a service start, stop or restart **sudo service idmlight start**. For convenience and staging script has been provided which will install and start everything up.<br/>
 **$ ./stage.sh<br/>**
 
 
@@ -74,7 +74,7 @@ Service start, stop and restart init.d script
 
 Testing idmlight
 ------------------------------
-A set of system level tests are available to test an installed idmlight server. These tests are meant to drive all the openidm REST APIs and check results. To run these tests, a clean database is required. <br/>
+A set of system level tests are available to test an installed idmlight server. These tests are meant to drive all the idmlight REST APIs and check results. To run these tests, a clean database is required. <br/>
 
 After having installed idmlight, the database tables are required to be dropped. <br/>
 $<installed source dir>/tests/cleardb.sh
