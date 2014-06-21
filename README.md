@@ -1,4 +1,4 @@
-idmlight 
+IDMLight 
 ===============
 IDMLight is a simple identity management server which can be used with a variety of systems which require Identity management and Role Based Access Control (RBAC). IDMLight is meant to be simple and effective providing a simple identity model which models domains, users, roles and grants. Together, these can be used to enforce your own (RBAC). Idmlight has a set of RESTful interfaces allowing full CRUD operations on IDM resources.  
 
@@ -7,25 +7,25 @@ Role based access controls (RBAC) simplify routine account management operations
 
 Design Overview
 -----------------
-IDMLight is implemented in Java and uses an SQL database to persist the IDM model. The reference implementation uses SQLite but any compatible Java JBDC SQL database may also be used. Openidm can be run in any Java runtime environment but the reference implementation allows building a debian package which can be depolyed as a Linux service.
-idmlight is a stand-alone REST service which listens for REST requests on its own https port. Https is used for privacy when making REST requests allowing command line or GUI access. The keystore file provided is self signed but can be replaced with any properly signed keystore of your choosing. A configuration file, **idmlight.config**, allows defining a number of run time settings of idmlight including security settings and the specific JDBC driver to be used.<br>
+IDMLight is implemented in Java and uses an SQL database to persist the IDM model. The reference implementation uses SQLite but any compatible Java JBDC SQL database may also be used. IDMLight can be run in any Java runtime environment but the reference implementation allows building a debian package which can be depolyed as a Linux service.
+IDMLight is a stand-alone REST service which listens for REST requests on its own https port. Https is used for privacy when making REST requests allowing command line or GUI access. The keystore file provided is self signed but can be replaced with any properly signed keystore of your choosing. A configuration file, **idmlight.config**, allows defining a number of run time settings of idmlight including security settings and the specific JDBC driver to be used.<br>
 
-There are three main REST resources projected through the idmlight REST API. They are ..<br>
+There are three main REST resources projected through the IDMLight REST API. They are ..<br>
 **1. Domain** A domain is a top level container for collecting users. E.g. this might be an organization's name like 'sales', 'R&D', or the name of a company like 'WidgetCo'.<br>
   
 **2. User** A user defines an entity which has a name and set of properties such as contact, email address and name. A user may belong to more than one entity. For example, user Joe may belong to both domain 'sales' and 'R&D' while user Tom may only belong to 'R&D'. 
 
-**3.Role** A role is a defined role name which idmlight allows to be defined as any value but once defined can be associated with a domain and user. This association is termed as a 'grant'. For example, if we define a role of 'admin' we can then define a grant of domain 'R&D',user 'Joe' and role 'admin'.<br>   
+**3.Role** A role is a defined role name which IDMLight allows to be defined as any value but once defined can be associated with a domain and user. This association is termed as a 'grant'. For example, if we define a role of 'admin' we can then define a grant of domain 'R&D',user 'Joe' and role 'admin'.<br>   
 
 The **api.md** file has details on the actual APIs and examples.<br>
 
 
-Getting and building idmlight
+Getting and building IDMLight
 ------------------
 1) Get your Operationg system(Ubuntu OS, 12.04 64 bit bit OS is recommended)<br/>
 Other OSs are possible but these instructions assume Debian packages for installing all dependencies. 
 
-2) Install idmlight sources, clone these from github repo. This assumes that you already have the git client installed.<br/>
+2) Install IDMLight sources, clone these from github repo. This assumes that you already have the git client installed.<br/>
 **$ git clone https://github.com/pemellquist/idmlight.git <your local dorectory>** 
 
 3) Install maven, needed to building. Maven2 has been verified to work, new versions may also work.<br/>
@@ -39,8 +39,8 @@ Other OSs are possible but these instructions assume Debian packages for install
 5) Install Debian Package Make tool. This will you to build a debian package which can be installed on your Debian based system.<br/>
 **$ sudo apt-get install dh-make**
 
-6) Building idmlight<br/> 
-idmlight uses maven for building and resolving dependencies hence everything is defined in the standard maven pom.xml file. You may choose to run **mvn clean install** and **mvn assembly:assembly** and then a provided script to build the debian package or you can simply run the provided build shell script which will build and package everything.<br>
+6) Building IDMLight<br/> 
+IDMLight uses maven for building and resolving dependencies hence everything is defined in the standard maven pom.xml file. You may choose to run **mvn clean install** and **mvn assembly:assembly** and then a provided script to build the debian package or you can simply run the provided build shell script which will build and package everything.<br>
 **$ <your local directory>./build.sh<br/>**
 If the build was a success you should see something like ...<br>
 ```
@@ -59,7 +59,7 @@ idmlight server Debian Package Created in : idmlight-1.00/idmlightm-1.00.deb
 **$ ./stage.sh<br/>**
 
 
-idmlight runtime directories and files
+IDMLight runtime directories and files
 --------------------------------
 Once the debian package has been installed the following directories and files are created.<br/>
 
@@ -72,11 +72,11 @@ Destination for logging files. Logs can be helful when looking at problems.
 /etc/init.d/idmlight<br/>
 Service start, stop and restart init.d script
 
-Testing idmlight
+Testing IDMLight 
 ------------------------------
-A set of system level tests are available to test an installed idmlight server. These tests are meant to drive all the idmlight REST APIs and check results. To run these tests, a clean database is required. <br/>
+A set of system level tests are available to test an installed IDMLight server. These tests are meant to drive all the idmlight REST APIs and check results. To run these tests, a clean database is required. <br/>
 
-After having installed idmlight, the database tables are required to be dropped. <br/>
+After having installed IDMLight, the database tables are required to be dropped. <br/>
 $<installed source dir>/tests/cleardb.sh
 
 Tests can be run and results reported. <br/>

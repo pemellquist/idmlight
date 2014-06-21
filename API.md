@@ -1,4 +1,4 @@
-# openidm API Specification 
+# IDMLight API Specification 
 
 **Date:** June 17, 2014
 
@@ -6,11 +6,11 @@
 
 ## 1. Overview
 
-This guide is intended for software developers who wish to create applications using the openidm set of APIs. It assumes the reader has a general understanding of APIs, IDM concepts, RESTful web services, HTTP/1.1 conventions and JSON serialization formats.
+This guide is intended for software developers who wish to create applications using the IDMLight set of APIs. It assumes the reader has a general understanding of APIs, IDM concepts, RESTful web services, HTTP/1.1 conventions and JSON serialization formats.
 
 ### 1.1 API Maturity Level
 
-This API definition represents the openidm service in Beta release form. Functionality represented within this specification is subject to change. 
+This API definition represents the IDMLight service in Beta release form. Functionality represented within this specification is subject to change. 
 
 **Version API Status**: *BETA*
 
@@ -20,10 +20,10 @@ Role based access controls (RBAC) simplify routine account management operations
 
 ### 2.1 Overview
 
-The openidm service is a set of APIs that provide a RESTful interface for the creation and management of identities to be used for the purpose of authorization and Role Based Access Control (RBAC). OpenIDM does not perform authenication or authorization itself since this is the function of other systems. Openidm does allow the creation and modeling of identities to be used by these systems. 
+The IDMLight service is a set of APIs that provide a RESTful interface for the creation and management of identities to be used for the purpose of authorization and Role Based Access Control (RBAC). IDMLight does not perform authenication or authorization itself since this is the function of other systems. IDMLight does allow the creation and modeling of identities to be used by these systems. 
 
 ### 2.2 Conceptual/Logical Architecture View
-To use the openidm API effectively, you should understand several key concepts.
+To use the IDMLight API effectively, you should understand several key concepts.
 
 #### 2.2.1 Domain 
 A Domain is a container for grouping Users. A Domain can have more than one User and a User can belong to more than one Domain. A Domain can be used to group a set of Users and Roles modeling an organization. For example, a Domain can be used to represent a company with all its employees each with different access rights. 
@@ -36,29 +36,29 @@ A Role defines a role of a User on the system. Roles can be defined to be any na
 
 
 ## 4. General API Information 
-This section describes operations and guidelines that are common to openidm APIs.
+This section describes operations and guidelines that are common to IDMLight APIs.
 
 ### 4.1 JSON 
-The openidm API currently only supports JSON data serialization formats for request and response bodies. The request format is specified using the 'Content-Type' header and is required for operations that have a request body. The response format should be specified in requests using the 'Accept'header. If no response format is specified, JSON is the default.
+The IDMLight API currently only supports JSON data serialization formats for request and response bodies. The request format is specified using the 'Content-Type' header and is required for operations that have a request body. The response format should be specified in requests using the 'Accept'header. If no response format is specified, JSON is the default.
 
 ### 4.2 Persistent Connections
 By default, the API supports persistent connections via HTTP/1.1 'keep-alive's. All connections will be kept alive unless the connection header is set to close. In adherence with the IETF HTTP RFCs, the server may close the connection at any time and clients should not rely on this behavior.
 
 ### 4.3 Faults
-When issuing a openidm API request, it is possible that an error can occur. In these cases, the system will return an HTTP error response code denoting the type of error and a openidm response body with additional details regarding the error. Specific HTTP status codes possible are listed in each API definition.
+When issuing an IDMLight API request, it is possible that an error can occur. In these cases, the system will return an HTTP error response code denoting the type of error and a IDMLight response body with additional details regarding the error. Specific HTTP status codes possible are listed in each API definition.
 
 
-## 5. OpenIDM API Resources and Methods 
-The following is a summary of all supported OpenIDM API resources and methods. Each resource and method is defined in detail in the subsequent sections. 
+## 5. IDMLight API Resources and Methods 
+The following is a summary of all supported IDMLight API resources and methods. Each resource and method is defined in detail in the subsequent sections. 
 
 **Derived resource identifiers:**
 
-**{baseURI}** is the endpoint URI for the openIDM REST service. This may be empty or a defined URI prefix. 
+**{baseURI}** is the endpoint URI for the IDMLight REST service. This may be empty or a defined URI prefix. 
 
 **{ver}** is the specific version URI for the REST API version. the current version is 'v1'. 
 
 
-### 5.1 OpenIDM API Summary Table
+### 5.1 IDMLight API Summary Table
 
 |Resource            |Operation                                 |Method |Path                                                          |
 |:-------------------|:-----------------------------------------|:------|:-------------------------------------------------------------|
@@ -73,7 +73,7 @@ The following is a summary of all supported OpenIDM API resources and methods. E
 
 *HTTP standard request headers*
 
-**Accept** - Internet media types that are acceptable in the response.  The openidm API supports the media type 'application/json'.
+**Accept** - Internet media types that are acceptable in the response.  The IDMLight API supports the media type 'application/json'.
 
 **Content-Length** - The length of the request body in octets (8-bit bytes).
 
@@ -125,7 +125,7 @@ None required.
 |200               |OK                   |
 
 ### 6.8 Response Body
-The response body contains a list of all supported versions of OpenIDM.
+The response body contains a list of all supported versions of IDMLight.
 
 ### 6.9 Error Response Codes 
 |HTTP Status Code  |Description          |
@@ -134,7 +134,7 @@ The response body contains a list of all supported versions of OpenIDM.
 |401               |Unauthorized         |
 |404               |Not Found            |
 |405               |Not Allowed          |
-|500               |OpenIDM Fault        |
+|500               |IDMLight Fault       |
 
 
 ### 6.10 Example
