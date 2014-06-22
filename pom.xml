@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.pem.openidm</groupId>
-  <artifactId>openidm</artifactId>
+  <groupId>org.pem.idmlight</groupId>
+  <artifactId>idmlight</artifactId>
   <version>0.1.00</version>
   <packaging>jar</packaging>
 
-  <name>openidm</name>
+  <name>idmlight</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -25,7 +25,7 @@
         <artifactId>maven-jar-plugin</artifactId>        
         <configuration>
           <archive>
-            <manifestFile>src/main/resources/META-INF/openidm.mf</manifestFile>
+            <manifestFile>src/main/resources/META-INF/idmlight.mf</manifestFile>
           </archive>
         </configuration>
       </plugin>
@@ -35,7 +35,7 @@
             <configuration>
                  <archive>
                     <manifest>
-                        <mainClass>org.pem.openidm.OpenIDM</mainClass>
+                        <mainClass>org.pem.idmlight.IDMLight</mainClass>
                     </manifest>
                 </archive>
             

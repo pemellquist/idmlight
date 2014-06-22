@@ -5,7 +5,7 @@ PACKAGE_OWNER=pemellquist@gmail.com
 PACKAGE_CONTROL=debian/DEBIAN/control
 PACKAGE_DESCRIPT="IDMLight IDentity Management(IDM) Server"
 PACKAGE_LOCATION="opt/idmlight"
-PACKAGE_JAR="/target/openidm-0.1.00-jar-with-dependencies.jar"
+PACKAGE_JAR="/target/idmlight-0.1.00-jar-with-dependencies.jar"
 
 # create debian package directory and initialize
 rm -r -f $PACKAGE_NAME-$PACKAGE_VERSION

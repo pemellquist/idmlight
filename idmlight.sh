@@ -1,11 +1,11 @@
 #!/bin/bash
-JAR="/opt/idmlight/openidm-0.1.00-jar-with-dependencies.jar"
-KILLPATTERN="/opt/idmlight/openidm-"
+JAR="/opt/idmlight/idmlight-0.1.00-jar-with-dependencies.jar"
+KILLPATTERN="/opt/idmlight/idmlight-"
 LOGCFG="file:/opt/idmlight/log4j.properties"
 CONFIG="./idmlight.config"
 NOW=$(date +"%F-%H%M%S")
 IDMSTDOUT=/var/log/idmlight/idmlight-stdout-$NOW.log
-IDMLOG=/var/log/openidm/idmlight.log
+IDMLOG=/var/log/idmlight/idmlight.log
 
 if [ $# -lt 1 ]
 then
@@ -21,8 +21,8 @@ then
 	then
 		echo "application     :" $JAR
 		echo "logging cfg     :" $LOGCFG
-		echo "openidm stdout  :" $IDMSTDOUT
-		echo "openidm log     :" $IDMLOG
+		echo "idmlight stdout  :" $IDMSTDOUT
+		echo "idmlight log     :" $IDMLOG
 		java -Dlog4j.configuration=$LOGCFG -jar $JAR $CONFIG > $IDMSTDOUT 2>&1 & 
 		echo "started"
 		exit 0
